@@ -11,5 +11,6 @@ import { UseCases } from './usecases/commands';
   imports: [CqrsModule, UserModule],
   controllers: [AuthCommandController],
   providers: [...UseCases, AuthInteractor, ...Infrastructure],
+  exports: [AuthInteractor],
 })
 export class AuthModule {}

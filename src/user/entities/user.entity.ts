@@ -1,5 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { UserAwareInterface as IUser } from 'src/common';
+import { NewsInterface, UserAwareInterface as IUser } from 'src/common';
 
 export class User extends AggregateRoot implements IUser {
   id: number;
@@ -8,6 +8,7 @@ export class User extends AggregateRoot implements IUser {
   name: string;
   createdAt: Date;
   updatedAt: Date;
+  news: NewsInterface[];
 
   constructor(login: string) {
     super();

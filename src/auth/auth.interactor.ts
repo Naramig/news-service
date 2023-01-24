@@ -4,6 +4,7 @@ import { CommandBus } from '@nestjs/cqrs';
 import {
   LoginCommand,
   RegisterCommand,
+  VerifyAndDecodeCommand,
 } from './usecases/commands/implementation';
 import { RegistrationDto } from './usecases/dto';
 import { LoginDto } from './usecases/dto/login.dto';
@@ -25,4 +26,7 @@ export class AuthInteractor {
     await this.commandBus.execute<LoginCommand, string>(
       new LoginCommand(login, password),
     );
+
+  verifyAndDecode = async (token: string) =>
+    await this.commandBus.execute(new VerifyAndDecodeCommand(token));
 }

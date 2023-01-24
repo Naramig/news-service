@@ -39,4 +39,12 @@ export const UserSchema = new EntitySchema<IUser>({
       nullable: true,
     },
   },
+  relations: {
+    news: {
+      type: 'one-to-many',
+      target: 'News',
+      cascade: true,
+      inverseSide: 'user',
+    },
+  },
 });

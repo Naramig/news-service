@@ -23,8 +23,6 @@ export class RegisterHandler implements ICommandHandler<Command> {
     const user = this.users.create(login);
     const now = new Date();
     user.register(hashedPassword, name, now);
-    console.log(user);
     await this.users.save(user);
-    return;
   }
 }

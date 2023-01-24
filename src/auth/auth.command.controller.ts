@@ -1,19 +1,22 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body } from '@nestjs/common';
 
 import { AuthInteractor } from './auth.interactor';
+import { LoginDecorator } from './decorators';
+import { CommandAuthDecorator } from './decorators';
+import { RegisterDecorator } from './decorators';
 import { RegistrationDto } from './usecases/dto';
 import { LoginDto } from './usecases/dto/login.dto';
 
-@Controller('auth')
+@CommandAuthDecorator()
 export class AuthCommandController {
   constructor(private readonly interactor: AuthInteractor) {}
 
-  @Post('register')
+  @RegisterDecorator()
   register(@Body() { login, password, name }: RegistrationDto): Promise<void> {
     return this.interactor.register({ login, password, name });
   }
 
-  @Post('login')
+  @LoginDecorator()
   login(@Body() { login, password }: LoginDto): Promise<string> {
     return this.interactor.login({ login, password });
   }

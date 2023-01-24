@@ -12,7 +12,7 @@ export class JwtService implements JwtInterface {
     return jwt.sign(payload, SECRET, OPTIONS);
   }
 
-  verify(token: string): boolean {
+  verify(token: string): Record<string, any> {
     return jwt.verify(token, SECRET);
   }
 }
